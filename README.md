@@ -10,3 +10,9 @@
 - ピックアップユーザー抽出
 
 となります。
+
+frontに表示する部分は途中までですが
+
+- https://github.com/OsamuYabuta/wuhan-front
+
+にあります。
