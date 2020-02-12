@@ -35,9 +35,11 @@ type TweetTopicModel struct {
 }
 
 type TweetPickupUsersModel struct {
-	Lang       string
-	Screenname string
-	Score      float32
+	Id             int64
+	Lang           string
+	Screenname     string
+	Score          int
+	CalculatedDate string
 }
 
 type TokenizedTweetsModel struct {
@@ -268,6 +270,28 @@ func (twPuMs *TweetPickupUsersModel) DeletePickupUsers(lang string) (err error) 
 
 	if err != nil {
 		panic(err.Error())
+	}
+
+	return
+}
+
+func (tpuM *TweetPickupUsersModel) FindByLang(lang string, targetDate time.Time) (result []TweetPickupUsersModel, err error) {
+	stmt, err := Db.Prepare("select id,screen_name,score,lang,calculated_date from tweet_pickup_users where lang = ? and calculated_date = ? order by score desc limit 30")
+
+	if err != nil {
+		return result, err
+	}
+
+	rows, err := stmt.Query(lang, utils.FormatDate(targetDate))
+
+	if err != nil {
+		return result, err
+	}
+
+	for rows.Next() {
+		var rec TweetPickupUsersModel
+		rows.Scan(&rec.Id, &rec.Screenname, &rec.Score, &rec.Lang, &rec.CalculatedDate)
+		result = append(result, rec)
 	}
 
 	return
