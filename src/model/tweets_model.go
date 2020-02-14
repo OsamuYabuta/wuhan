@@ -137,7 +137,7 @@ func (twPuMs *TweetPickupUsersModel) clear() {
 }
 
 func (twMs *TweetModel) FindSinceId(lang string) (sinceId int64, err error) {
-	stmt, err := Db.Prepare("select max(id) as since_id from tweets where lang = ? ")
+	stmt, err := Db.Prepare("select ifnull(max(id),0) as since_id from tweets where lang = ? ")
 	if err != nil {
 		return 0, err
 	}
