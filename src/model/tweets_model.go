@@ -307,7 +307,7 @@ var Mongo *mongo.Client
 var Ctx context.Context
 **/
 func (ttM *TokenizedTweetsModel) Init() {
-	Mongo, err := mongo.NewClient(options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s", GlobalConfig.MongoHost(), GlobalConfig.MongoPOrt())))
+	Mongo, err := mongo.NewClient(options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s", GlobalConfig.MongoHost(), GlobalConfig.MongoPort())))
 
 	if err != nil {
 		log.Fatal(err.Error())
