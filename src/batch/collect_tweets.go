@@ -64,7 +64,7 @@ func sub(keyword string, lang string, wg *sync.WaitGroup) {
 		twMs.Username = tweet.User.Username
 		twMs.Lang = tweet.Lang
 		twMs.Tweet = tweet.Text
-		twMs.CreatedAt = tweet.CreatedAt
+		twMs.CreatedAt = utils.ParseTweetedTime(ttweet.CreatedAt)
 		twMs.Screenname = tweet.User.Screenname
 
 		//if it error , execute panic automatically
