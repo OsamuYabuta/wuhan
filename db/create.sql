@@ -4,6 +4,8 @@ create table tweets (
     tweet text not null ,
     username varchar(100) not null,
     created_at datetime not null,
+    since_id int(11) unsigned default 0,
+    screen_name varchar(255) default null,
     key idx_lang(lang),
     key idx_username(username)
 ) engine=innodb default charset utf8mb4;
