@@ -4,9 +4,11 @@ import (
 	"os"
 	//"testing"
 	"log"
+
+	. "batch"
 )
 
-func main() int {
+func main() {
 	args := os.Args
 
 	var err error
@@ -26,8 +28,6 @@ func main() int {
 
 	if err != nil {
 		log.Println(err.Error())
-		return -1
 	}
 
-	return 0
 }
