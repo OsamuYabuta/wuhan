@@ -72,7 +72,7 @@ func Calculate_User() (err error) {
 		for _, keyValue := range pickedUpUsers {
 			twPuMs.Lang = lang
 			//log.Printf("%d", keyValue.Value)
-			twPuMs.Score = float32(keyValue.Value) * 1.0
+			twPuMs.Score = keyValue.Value
 			twPuMs.Screenname = keyValue.Key
 			twPuMs.InsertPickedUpUser()
 		}
