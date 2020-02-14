@@ -8,7 +8,6 @@ import (
 	"time"
 	"tokenizer"
 	"utils"
-	"config"
 
 	. "sync"
 	_ "github.com/go-sql-driver/mysql"
@@ -20,7 +19,6 @@ import (
 )
 
 var GlobalConfig Config = Config{}
-GlobalConfig.Init()
 
 type TweetModel struct {
 	Id         int64
@@ -108,8 +106,9 @@ type MongoHashWordMapValues struct {
 var Db *sqlx.DB
 
 func init() {
+	GlobalConfig.Init()
 	var err error
-	Db, err = sqlx.Connect("mysql", fmt.Sprintf("%s:%s@(%s:%s)/wuhan" , GlobalConfig.MysqlUser() , GlobalConfig.MysqlPassword(), GlobalConfig.MysqlHost() , GlobalConfig.MysqlPort()))
+	Db, err = sqlx.Connect("mysql", fmt.Sprintf("%s:%s@(%s:%s)/wuhan", GlobalConfig.MysqlUser(), GlobalConfig.MysqlPassword(), GlobalConfig.MysqlHost(), GlobalConfig.MysqlPort()))
 
 	if err != nil {
 		log.Fatal(err.Error())
@@ -307,7 +306,7 @@ var Mongo *mongo.Client
 var Ctx context.Context
 **/
 func (ttM *TokenizedTweetsModel) Init() {
-	Mongo, err := mongo.NewClient(options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s" , GlobalConfig.MongoHost() , GlobalConfig.MongoPOrt())))
+	Mongo, err := mongo.NewClient(options.Client().ApplyURI(fmt.Sprintf("mongodb://%s:%s", GlobalConfig.MongoHost(), GlobalConfig.MongoPOrt())))
 
 	if err != nil {
 		log.Fatal(err.Error())
