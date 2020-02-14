@@ -15,6 +15,8 @@ type Config struct {
 	twitterApiConsumerSecretKey string
 	twitterApiOauthToken        string
 	twitterApiOauthTokenSecret  string
+	bindIp                      string
+	bindPort                    string
 }
 
 func (c *Config) Init() {
@@ -28,6 +30,8 @@ func (c *Config) Init() {
 	c.twitterApiConsumerSecretKey = os.Getenv("WUHAN_TWITTER_API_CONSUMER_SECRET_KEY")
 	c.twitterApiOauthToken = os.Getenv("WUHAN_TWITTER_API_OAUTH_TOKEN")
 	c.twitterApiOauthTokenSecret = os.Getenv("WUHAN_TWITTER_API_OAUTH_TOKEN_SECRET")
+	c.bindIp = os.Getenv("WUHAN_WEB_BIND_IP")
+	c.bindPort = os.Getenv("WUHAN_WEB_BIND_PORT")
 
 }
 
@@ -61,4 +65,12 @@ func (c *Config) TwiiterApiConsumerKey() string {
 
 func (c *Config) TwitterApiConsumerSecretKey() string {
 	return c.twitterApiConsumerSecretKey
+}
+
+func (c *Config) BindIp() string {
+	return c.bindIp
+}
+
+func (c *Config) BindPort() string {
+	return c.bindPort
 }
