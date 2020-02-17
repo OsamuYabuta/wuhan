@@ -26,7 +26,7 @@ func Api_topic(writter http.ResponseWriter, request *http.Request, param httprou
 	lang := param.ByName("lang")
 
 	var ttM model.TweetTopicModel = model.TweetTopicModel{}
-	var targetDate = time.Now().AddDate(0, 0, -1)
+	var targetDate = time.Now()
 	result, err := ttM.FindByLang(lang, targetDate)
 
 	if err != nil {

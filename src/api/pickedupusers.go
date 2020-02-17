@@ -26,7 +26,7 @@ func Api_Pickedupusers(writter http.ResponseWriter, request *http.Request, param
 	lang := param.ByName("lang")
 
 	var tpkuM model.TweetPickupUsersModel = model.TweetPickupUsersModel{}
-	var targetDate = time.Now().AddDate(0, 0, -1)
+	var targetDate = time.Now()
 	result, err := tpkuM.FindByLang(lang, targetDate)
 
 	if err != nil {
