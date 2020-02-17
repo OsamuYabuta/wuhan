@@ -281,6 +281,10 @@ func (twPuMs *TweetPickupUsersModel) DeletePickupUsers(lang string) (err error) 
 }
 
 func (tpuM *TweetPickupUsersModel) FindByLang(lang string, targetDate time.Time) (result []TweetPickupUsersModel, err error) {
+	if lang == "cn" {
+		lang = "zh"
+	}
+
 	stmt, err := Db.Prepare("select id,screen_name,score,lang,calculated_date from tweet_pickup_users where lang = ? and calculated_date = ? order by score desc limit 30")
 
 	if err != nil {
