@@ -8,6 +8,7 @@ import (
 const layout string = "Mon Jan 2 15:04:05 MST 2006"
 const layout2 string = "2006-01-02 03:04:05"
 const layout3 string = "2006-01-02"
+const layout4 string = "Mon Jan 2 15:04:05 -0700 2006"
 
 //	var date string = "Sun May 5 18:01:29 JST 2019"
 

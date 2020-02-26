@@ -28,7 +28,7 @@ type Token struct {
 
 func (t *Tokenizer) Tokenize(text string, lang string) (result Tokens, err error) {
 	client := &http.Client{
-		Timeout: time.Millisecond * 60000,
+		Timeout: time.Millisecond * 300000,
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			return http.ErrUseLastResponse
 		},
