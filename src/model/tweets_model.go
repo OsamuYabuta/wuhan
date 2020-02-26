@@ -317,7 +317,7 @@ func (ttM *TokenizedTweetsModel) Init() {
 		log.Fatal(err.Error())
 	}
 
-	ctx, _ := context.WithTimeout(context.Background(), 300*time.Second)
+	ctx, _ := context.WithTimeout(context.Background(), 3600*time.Second)
 	err = Mongo.Connect(ctx)
 
 	if err != nil {
